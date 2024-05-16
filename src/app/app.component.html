@@ -1,0 +1,58 @@
+<div class="h-screen bg-neutral-800 py-10">
+    <div class="max-w-lg mx-auto bg-neutral-900 h-full rounded-3xl">
+        <div class="px-8">
+            <div class="flex justify-center">
+                <div class="pt-10 flex">
+                    <input type="text"
+                        class="px-3 py-2 focus:outline-none rounded-full"
+                        placeholder="Search city..." #textSearch>
+
+                    <button class="bg-white rounded-full p-1 ms-2">
+                        <img src="../assets/images/search-svg.svg" class="w-8"
+                            (click)="onSearch(textSearch.value)">
+                    </button>
+
+                </div>
+            </div>
+
+            @if (weather$ | async; as weather) {
+            <div class="text-white mt-10">
+                <div class="flex flex-col items-center">
+                    <img [src]="weather.current.condition.icon" class="w-40">
+                    <div>
+                        <span class="text-6xl relative">
+                            {{weather.current.temp_c}}
+                            <sup class="text-2xl absolute mt-5"> &#176;C</sup>
+                        </span>
+                    </div>
+                    <p class="text-6xl mt-10">
+                        {{weather.location.name}},{{weather.location.country}}
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 mt-20">
+                    <div class="flex gap-5 justify-center ">
+                        <span>
+                            <img src="../assets/images/humidity-svg.svg"
+                                class="w-14 ">
+                        </span>
+                        <div class="flex flex-col">
+                            <span>{{weather.current.humidity}}</span>
+                            <span>Humidity</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-5 justify-center ">
+                        <span>
+                            <img src="../assets/images/wind-svg.svg"
+                                class="w-14 ">
+                        </span>
+                        <div class="flex flex-col">
+                            <span>{{weather.current.wind_kph}}km/h</span>
+                            <span>Wind Speed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            } </div>
+    </div>
+</div>
